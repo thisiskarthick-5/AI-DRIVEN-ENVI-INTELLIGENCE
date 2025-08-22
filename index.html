@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rain Forecast</title>
+    <style>
+        body { font-family: Arial; text-align:center; }
+        .forecast-bar { display:flex; justify-content:center; margin-top:20px; }
+        .hour { margin:5px; padding:10px; border-radius:5px; }
+        .rain { background: lightblue; }
+        .no-rain { background: lightyellow; }
+    </style>
+</head>
+<body>
+    <h1>Rain Forecast 🌧️</h1>
+    <input type="text" id="city" placeholder="Enter city">
+    <button onclick="getForecast()">Check</button>
+    <div class="forecast-bar" id="forecastBar"></div>
+
+    <script>
+    async function getForecast() {
+        const city = document.getElementById('city').value || 'London';
+        const res = await fetch(`/forecast?city=${city}`);
+        const data = await res.json();
+        const bar = document.getElementById('forecastBar');
+        bar.innerHTML = '';
+        data.forecast.slice(0, 12).forEach(f => {
+            const div = document.createElement('div');
+            div.className = 'hour ' + (f.rain_mm > 0 ? 'rain' : 'no-rain');
+            div.innerText = `${f.time.split(' ')[1].slice(0,5)}\n${f.rain_mm}mm`;
+            bar.appendChild(div);
+        });
+    }
+    </script>
+</body>
+</html>
