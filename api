@@ -1,0 +1,19 @@
+tep 1: Choose Weather API
+
+Use a reliable weather API to get rain forecasts:
+
+OpenWeatherMap (Free & Easy
+)
+
+Endpoint: https://api.openweathermap.org/data/2.5/forecast
+
+Returns 5-day forecast with 3-hour intervals
+
+WeatherAPI (Free Plan
+)
+
+Endpoint: /forecast.json
+
+Returns daily/hourly rain forecast
+
+We’ll use OpenWeatherMap for this example.
